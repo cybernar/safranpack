@@ -45,35 +45,36 @@ Extrait de fichier : <https://publitheque.meteo.fr/serveur/grilles/Demo_SIM2_201
 
 ## Détail des variables
 
-Mnémonique 	Libellé 	Unité
-LAMBX : 	E en Lambert II étendu 	hm
-LAMBY : 	N en Lambert II étendu 	hm
-DATE : 	Date 	AAAAMMJJ
-PRENEI_Q : 	Précipitations solides (cumul quotidien 06-06 UTC) 	mm et dixièmes
-PRELIQ_Q : 	Précipitations liquides (cumul quotidien 06-06 UTC) 	mm et dixièmes
-PE_Q : 	Pluies efficaces (cumul quotidien) 	mm et dixièmes
-T_Q : 	Température (moyenne quotidienne) 	°C et dixièmes
-TINF_H_Q : 	Température minimale des 24 températures horaires 	°C et dixièmes
-TSUP_H_Q : 	Température maximale des 24 températures horaires 	°C et dixièmes
-FF_Q : 	Vent (moyenne quotidienne) 	m/s et dixièmes
-DLI_Q : 	Rayonnement atmosphérique (cumul quotidien) 	J/cm2
-SSI_Q : 	Rayonnement visible (cumul quotidien) 	J/cm2
-EVAP_Q : 	Evapotranspiration réelle (cumul quotidien 06-06 UTC) 	mm et dixièmes
-ETP_Q : 	Evapotranspiration potentielle (formule de Penman-Monteith) 	mm et dixièmes
-Q_Q : 	Humidité spécifique (moyenne quotidienne) 	g/kg
-HU_Q : 	Humidité relative (moyenne quotidienne) 	%
-SWI_Q : 	Indice d'humidité des sols (moyenne quotidienne 06-06 UTC) 	%
-DRAINC_Q : 	Drainage (cumul quotidien 06-06 UTC) 	mm et dixièmes
-RUNC_Q : 	Ruissellement (cumul quotidien 06-06 UTC) 	mm et dixièmes
-WG_RACINE_Q : 	Contenu en eau liquide dans la couche racinaire à 06 UTC 	m3/m3
-WGI_RACINE_Q : 	Contenu en eau gelée dans la couche de racinaire à 06 UTC 	m3/m3
-RESR_NEIGE_Q : 	Equivalent en eau du manteau neigeux (moyenne quotidienne 06-06 UTC) 	mm et dixièmes
-RESR_NEIGE6_Q : 	Equivalent en eau du manteau neigeux à 06 UTC 	mm et dixièmes
-HTEURNEIGE_Q : 	Epaisseur du manteau neigeux (moyenne quotidienne 06-06 UTC) 	m
-HTEURNEIGE6_Q : 	Epaisseur du manteau à 06 UTC 	m
-HTEURNEIGEX_Q : 	Epaisseur du manteau neigeux maximum au cours de la journée 	m
-SNOW_FRAC_Q : 	Fraction de maille recouverte par la neige (moyenne quotidienne 06-06 UTC) 	%
-ECOULEMENT_Q : 	Ecoulement à la base du manteau neigeux 	mm et dixièmes
+|Mnémonique|Libellé|Unité|
+|----------|-------|-----|
+|LAMBX | E en Lambert II étendu | hm|
+|LAMBY | N en Lambert II étendu | hm|
+|DATE | Date | AAAAMMJJ|
+|PRENEI_Q | Précipitations solides (cumul quotidien 06-06 UTC) | mm et dixièmes|
+|PRELIQ_Q | Précipitations liquides (cumul quotidien 06-06 UTC) | mm et dixièmes|
+|PE_Q | Pluies efficaces (cumul quotidien) | mm et dixièmes|
+|T_Q | Température (moyenne quotidienne) | °C et dixièmes|
+|TINF_H_Q | Température minimale des 24 températures horaires | °C et dixièmes|
+|TSUP_H_Q | Température maximale des 24 températures horaires | °C et dixièmes|
+|FF_Q | Vent (moyenne quotidienne) | m/s et dixièmes|
+|DLI_Q | Rayonnement atmosphérique (cumul quotidien) | J/cm2|
+|SSI_Q | Rayonnement visible (cumul quotidien) | J/cm2|
+|EVAP_Q | Evapotranspiration réelle (cumul quotidien 06-06 UTC) | mm et dixièmes|
+|ETP_Q | Evapotranspiration potentielle (formule de Penman-Monteith) | mm et dixièmes|
+|Q_Q | Humidité spécifique (moyenne quotidienne) | g/kg|
+|HU_Q | Humidité relative (moyenne quotidienne) | %|
+|SWI_Q | Indice d'humidité des sols (moyenne quotidienne 06-06 UTC) | %|
+|DRAINC_Q | Drainage (cumul quotidien 06-06 UTC) | mm et dixièmes|
+|RUNC_Q | Ruissellement (cumul quotidien 06-06 UTC) | mm et dixièmes|
+|WG_RACINE_Q | Contenu en eau liquide dans la couche racinaire à 06 UTC  | m3/m3|
+|WGI_RACINE_Q | Contenu en eau gelée dans la couche de racinaire à 06 UTC | m3/m3|
+|RESR_NEIGE_Q | Equivalent en eau du manteau neigeux (moyenne quotidienne 06-06 UTC) | mm et dixièmes|
+|RESR_NEIGE6_Q | Equivalent en eau du manteau neigeux à 06 UTC | mm et dixièmes|
+|HTEURNEIGE_Q | Epaisseur du manteau neigeux (moyenne quotidienne 06-06 UTC) | m|
+|HTEURNEIGE6_Q | Epaisseur du manteau à 06 UTC | m|
+|HTEURNEIGEX_Q | Epaisseur du manteau neigeux maximum au cours de la journée | m|
+|SNOW_FRAC_Q | Fraction de maille recouverte par la neige (moyenne quotidienne 06-06 UTC) | %|
+|ECOULEMENT_Q | Ecoulement à la base du manteau neigeux | mm et dixièmes|
 
 ![Variable](variables_safran.png)
 
