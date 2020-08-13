@@ -1,0 +1,18 @@
+Package: safranpack
+Title: Extract data from Safran (very big) files 
+Version: 0.1
+Authors@R: 
+    person(given = "Cyril",
+           family = "Bernard",
+           role = c("aut", "cre"),
+           email = "cyril.bernard@cefe.cnrs.fr")
+Description: Ce package permet d'ouvrir les fichiers Meteofrance Safran et d'en extraire des données sous forme de fichier CSV ou de Raster.
+License: GPL-3
+Encoding: UTF-8
+LazyData: true
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.1.1
+Suggests: 
+    knitr,
+    rmarkdown
+VignetteBuilder: knitr
