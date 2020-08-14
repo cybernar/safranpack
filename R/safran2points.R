@@ -13,8 +13,10 @@
 #' @export
 #'
 #' @examples
-#' pts_20180318 <- DT2sf("20180318", DT_safran)
-#' st_write(pts_20180318, "data_20180318.shp", delete_layer = T)
+#' f_safran <- system.file("extdata", "dumdata_287009.csv.gz", package = "safranpack")
+#' DT_safran <- fread(f_safran, header = TRUE)
+#' pts_28700918 <- DT2sf("28700918", DT_safran)
+#' st_write(pts_28700918, "data_28700918.shp", delete_layer = T)
 #'
 DT2sf <- function(DT, extr_date) {
   DTi <- DT[DATE==extr_date]
@@ -39,8 +41,10 @@ DT2sf <- function(DT, extr_date) {
 #' @export
 #'
 #' @examples
-#' pts_20180318 <- DT2sf("20180318", DT_safran)
-#' st_write(pts_20180318, "data_20180318.shp", delete_layer = T)
+#' f_safran <- system.file("extdata", "dumdata_287009.csv.gz", package = "safranpack")
+#' DT_safran <- fread(f_safran, header = TRUE)
+#' pts_28700918 <- DT2sf("28700918", DT_safran)
+#' st_write(pts_28700918, "data_28700918.shp", delete_layer = T)
 #'
 DT2csv <- function(DT, extr_date) {
   DTi <- DT[DATE==extr_date]

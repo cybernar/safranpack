@@ -13,8 +13,10 @@
 #' @export
 #'
 #' @examples
-#' raster_rr <- DT2rast(DT_safran, "PRELIQ_Q", "20180318")
-#' writeRaster(raster_rr, "output_safran/rr_france_20180318.tif")
+#' f_safran <- system.file("extdata", "dumdata_287009.csv.gz", package = "safranpack")
+#' DT_safran <- fread(f_safran, header = TRUE)
+#' raster_rr <- DT2rast(DT_safran, "PRELIQ_Q", "28700918")
+#' writeRaster(raster_rr, "rr_france_28700918.tif")
 #'
 DT2rast <- function(DT, varname, extr_date) {
   varlist <- c("LAMBX", "LAMBY", varname)
@@ -40,8 +42,10 @@ DT2rast <- function(DT, varname, extr_date) {
 #' @export
 #'
 #' @examples
-#' raster_rr_201803 <- safran2rast(DT_safran, "PRELIQ_Q", "20180301", "20180331")
-#' writeRaster(raster_rr_201803, "output_safran/rr_france_201803.tif")
+#' f_safran <- system.file("extdata", "dumdata_287009.csv.gz", package = "safranpack")
+#' DT_safran <- fread(f_safran, header = TRUE)
+#' raster_rr_287009 <- safran2rast(DT_safran, "PRELIQ_Q", "28700901", "28700930")
+#' writeRaster(raster_rr_287009, "rr_france_287009.tif")
 #'
 safran2rast <- function(DT, varname, d_date, f_date, etendue_l2e=NULL) {
   varlist <- c("LAMBX", "LAMBY", "DATE", varname)
@@ -57,14 +61,3 @@ safran2rast <- function(DT, varname, d_date, f_date, etendue_l2e=NULL) {
   list_raster <- lapply(seq_dates, DT2rast, DT=DT_filtered, varname=varname)
   stack(list_raster)
 }
-
-
-f_test <- function(DT, extr_date) {
-  varlist = c("TINF_H_Q", "TSUP_H_Q")
-  DTi <- DT[DATE==extr_date, ..varlist]
-  dfi <- as.data.frame(DTi)
-  dfi
-  #dfi$TSUP_H_Q - dfi$TINF_H_Q
-}
-
-l

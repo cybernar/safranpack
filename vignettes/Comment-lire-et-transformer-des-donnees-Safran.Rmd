@@ -83,35 +83,31 @@ Extrait de fichier : <https://publitheque.meteo.fr/serveur/grilles/Demo_SIM2_201
 **Remarque :** selon la documentation de `data.table::fread`, il est possible directement un fichier compressé `.csv.gz` si la package **R.Utils** est installé.
 
 ```{r fread}
-library(data.table)
 # Téléchargement des données de démo MétéoFrance
 # Remarque : essayer plutôt les exemples avec les vraies (et volumineuses) données 
 # car les données de démo ne contiennent qu'un seul point
 
-URL <- "https://publitheque.meteo.fr/serveur/grilles/Demo_SIM2_2018_20180331.csv"
-download.file(URL,"Demo_SIM2_2018_20180331.csv")
+#URL <- "https://publitheque.meteo.fr/serveur/grilles/Demo_SIM2_2018_20180331.csv"
+#download.file(URL,"Demo_SIM2_2018_20180331.csv")
 
-f_safran <- "Demo_SIM2_2018_20180331.csv"
-DT_safran <- fread(f_safran, header = TRUE)
 ```
 
 ## Exemples d'utilisation 
 
 ```{r exemple}
 
-# ##### EXEMPLES D'UTILISATION #####
-library(raster)
-library(sf)
-
-
 # ---- exemple 1 : process raster (1 jour, 1 variable, tte la France) ----
 # temperature moyenne
-raster_tm_0209 <- DT2rast("20180209", DT_safran, "T_Q")
+# <- DT2rast(DT_safran, "T_Q", "20180209")
 # precipitation
-raster_rr_0703 <- DT2rast("20180209", DT_safran, "PRELIQ_Q")
+#raster_rr_0703 <- DT2rast(DT_safran, "PRELIQ_Q", "20180209")
 
-writeRaster(raster_tm_0703, "tm_france_20180209.tif")
-writeRaster(raster_rr_0703, "rr_france_20180209.tif")
+#writeRaster(raster_tm_0703, "tm_france_20180209.tif")
+#writeRaster(raster_rr_0703, "rr_france_20180209.tif")
+
+print("fin")
+
+
 
 # # etendue de l'Occitanie en Lambert 2 etendu ?
 # sf_reg <- st_read("regions-20180101-shp/regions-20180101.shp")

@@ -1,3 +1,4 @@
+usethis::use_package("R.utils")
 usethis::use_package("data.table")
 usethis::use_package("raster")
 usethis::use_package("sf")
