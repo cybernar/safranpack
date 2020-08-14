@@ -16,3 +16,7 @@ Suggests:
     knitr,
     rmarkdown
 VignetteBuilder: knitr
+Imports: 
+    data.table,
+    raster,
+    sf

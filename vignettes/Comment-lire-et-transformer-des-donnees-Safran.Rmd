@@ -84,8 +84,14 @@ Extrait de fichier : <https://publitheque.meteo.fr/serveur/grilles/Demo_SIM2_201
 
 ```{r fread}
 library(data.table)
-#setwd("D:/Archive_DATA/MeteoFrance/Safran-Isba données quotidiennes")
-f_safran <- "D:/Archive_DATA/MeteoFrance/Safran-Isba données quotidiennes/SIM2_2010_2017.csv.gz"
+# Téléchargement des données de démo MétéoFrance
+# Remarque : essayer plutôt les exemples avec les vraies (et volumineuses) données 
+# car les données de démo ne contiennent qu'un seul point
+
+URL <- "https://publitheque.meteo.fr/serveur/grilles/Demo_SIM2_2018_20180331.csv"
+download.file(URL,"Demo_SIM2_2018_20180331.csv")
+
+f_safran <- "Demo_SIM2_2018_20180331.csv"
 DT_safran <- fread(f_safran, header = TRUE)
 ```
 
@@ -94,111 +100,48 @@ DT_safran <- fread(f_safran, header = TRUE)
 ```{r exemple}
 
 # ##### EXEMPLES D'UTILISATION #####
-library(data.table)
 library(raster)
 library(sf)
-
-
-# ---- parametre : fichier en entree ----
-
-setwd("D:/MeteoFrance/Safran-Isba données quotidiennes")
-f_safran <- "SIM2_2010_2017.csv"
-
-DT_safran <- fread(f_safran, header = TRUE)
-
-# etendue de l'Occitanie en Lambert 2 etendu ?
-sf_reg <- st_read("regions-20180101-shp/regions-20180101.shp")
-sf_occ <- sf_reg[sf_reg$nom=="Occitanie",]
-sf_occ_l2 <- st_transform(sf_occ, 27572)
-# etendue format xmin, ymin, xmax, ymax
-etendue <- st_bbox(sf_occ_l2)
-# dates debut et fin
-jour1 <- as.Date("2014-01-01")
-jourN <- as.Date("2014-12-31")
 
 
 # ---- exemple 1 : process raster (1 jour, 1 variable, tte la France) ----
+# temperature moyenne
+raster_tm_0209 <- DT2rast("20180209", DT_safran, "T_Q")
+# precipitation
+raster_rr_0703 <- DT2rast("20180209", DT_safran, "PRELIQ_Q")
 
-raster_tm_0703 <- DT2rast("20140929", DT_safran, "T_Q")
-raster_tn_0703 <- DT2rast("20140929", DT_safran, "TINF_H_Q")
-raster_tx_0703 <- DT2rast("20140929", DT_safran, "TSUP_H_Q")
-raster_rr_0703 <- DT2rast("20140929", DT_safran, "PRELIQ_Q")
+writeRaster(raster_tm_0703, "tm_france_20180209.tif")
+writeRaster(raster_rr_0703, "rr_france_20180209.tif")
 
-writeRaster(raster_tm_0703, "output_safran/tm_france_20140929.tif")
-writeRaster(raster_tn_0703, "output_safran/tn_france_20140929.tif")
-writeRaster(raster_tx_0703, "output_safran/tx_france_20140929.tif")
-writeRaster(raster_rr_0703, "output_safran/rr_france_20140929.tif")
-
-
-# ---- exemple 2 : process stack (multitemporel, 1 variable, etendue region) ----
-
-stack_tn <- safran2rast(DT_safran, varname="TINF_H_Q", d_date=jour1, f_date=jourN, 
-                        etendue_l2e=etendue)
-stack_tx <- safran2rast(DT_safran, varname="TSUP_H_Q", d_date=jour1, f_date=jourN, 
-                        etendue_l2e=etendue)
-stack_rr <- safran2rast(DT_safran, varname="PRELIQ_Q", d_date=jour1, f_date=jourN, 
-                        etendue_l2e=etendue)
-
-writeRaster(stack_tn, "output_safran/tn_occitanie_2014.tif", overwrite=T)
-writeRaster(stack_tx, "output_safran/tx_occitanie_2014.tif", overwrite=T)
-writeRaster(stack_rr, "output_safran/rr_occitanie_2014.tif", overwrite=T)
+# # etendue de l'Occitanie en Lambert 2 etendu ?
+# sf_reg <- st_read("regions-20180101-shp/regions-20180101.shp")
+# sf_occ <- sf_reg[sf_reg$nom=="Occitanie",]
+# sf_occ_l2 <- st_transform(sf_occ, 27572)
+# # etendue format xmin, ymin, xmax, ymax
+# etendue <- st_bbox(sf_occ_l2)
+# # dates debut et fin
+# jour1 <- as.Date("2014-01-01")
+# jourN <- as.Date("2014-12-31")
+# 
+# # ---- exemple 2 : process stack (multitemporel, 1 variable, etendue region) ----
+# 
+# stack_tn <- safran2rast(DT_safran, varname="TINF_H_Q", d_date=jour1, f_date=jourN, 
+#                         etendue_l2e=etendue)
+# stack_tx <- safran2rast(DT_safran, varname="TSUP_H_Q", d_date=jour1, f_date=jourN, 
+#                         etendue_l2e=etendue)
+# stack_rr <- safran2rast(DT_safran, varname="PRELIQ_Q", d_date=jour1, f_date=jourN, 
+#                         etendue_l2e=etendue)
+# 
+# writeRaster(stack_tn, "output_safran/tn_occitanie_2014.tif", overwrite=T)
+# writeRaster(stack_tx, "output_safran/tx_occitanie_2014.tif", overwrite=T)
+# writeRaster(stack_rr, "output_safran/rr_occitanie_2014.tif", overwrite=T)
 
 
 # ---- exemple 3 : process grille points (1 jour, N variables, tte la France) ----
-
-pts_20180201 <- DT2sp("20140929", DT_safran)
-#pts_20180201$name <- paste(pts_20180201$LAMBX, pts_20180201$LAMBY, sep="_")
-st_write(pts_20180201, "output_safran/data_20140929.shp", delete_layer = T)
-
-```
-
-## Filter safran
-
-```{r exemple2}
-
-# ---- parametre : fichier en entree ----
-library(data.table)
-library(raster)
-library(sf)
-
-
-#setwd("C:/Dossier_Travail/Safran")
-f_proximite <- "Proximite_parcelles_Safran.xlsx"
-tbl_par <- read_xlsx(f_proximite)
-l_parc <- mapply(
-  function(n,x,y) { list(CODE=n, LAMBX=x, LAMBY=y) },
-  tbl_par$Code.Par, tbl_par$`__LAMBX`,tbl_par$`__LAMBY`,
-  SIMPLIFY = FALSE)
-
-# ---- fichier1 2005-2009  ----
-f_safran1 <- "SIM2_2000_2009.csv"
-# ---- ouvrir donnees ----
-DT_safran <- fread(f_safran1, header = TRUE)
-# date debut et fin
-deb = as.Date("2005-01-01")
-fin = as.Date("2009-12-31")
-l_DT <- lapply(l_parc, function(x, d, f, DT){
-  safran_filtre(DT, x[["LAMBX"]], x[["LAMBY"]], d, f)
-}, deb, fin, DT_safran)
-DT_output <- rbindlist(l_DT, idcol="Code")
-# ecrire fichier
-fwrite(DT_output, "data_safran.csv")
-
-
-# ---- fichier1 2009-2017  ----
-f_safran2 <- "SIM2_2010_2017.csv"
-# ---- ouvrir donnees ----
-DT_safran <- fread(f_safran2, header = TRUE)
-# date debut et fin
-deb = as.Date("2010-01-01")
-fin = as.Date("2013-12-31")
-l_DT <- lapply(l_parc, function(x, d, f, DT){
-  safran_filtre(DT, x[["LAMBX"]], x[["LAMBY"]], d, f)
-}, deb, fin, DT_safran)
-DT_output <- rbindlist(l_DT, idcol="Code")
-# ecrire fichier
-fwrite(DT_output, "data_safran.csv", append=TRUE)
-
+# 
+# pts_20180201 <- DT2sp("20140929", DT_safran)
+# #pts_20180201$name <- paste(pts_20180201$LAMBX, pts_20180201$LAMBY, sep="_")
+# st_write(pts_20180201, "output_safran/data_20140929.shp", delete_layer = T)
 
 ```
 
