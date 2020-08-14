@@ -10,13 +10,14 @@
 #' @param extr_date Single character with date (format : "YYYYMMDD")
 #'
 #' @return sf object
+#' @import data.table sf
 #' @export
 #'
 #' @examples
 #' f_safran <- system.file("extdata", "dumdata_287009.csv.gz", package = "safranpack")
-#' DT_safran <- fread(f_safran, header = TRUE)
-#' pts_28700918 <- DT2sf("28700918", DT_safran)
-#' st_write(pts_28700918, "data_28700918.shp", delete_layer = T)
+#' #DT_safran <- fread(f_safran, header = TRUE)
+#' #pts_28700918 <- DT2sf("28700918", DT_safran)
+#' #st_write(pts_28700918, "data_28700918.shp", delete_layer = T)
 #'
 DT2sf <- function(DT, extr_date) {
   DTi <- DT[DATE==extr_date]
@@ -42,9 +43,9 @@ DT2sf <- function(DT, extr_date) {
 #'
 #' @examples
 #' f_safran <- system.file("extdata", "dumdata_287009.csv.gz", package = "safranpack")
-#' DT_safran <- fread(f_safran, header = TRUE)
-#' pts_28700918 <- DT2sf("28700918", DT_safran)
-#' st_write(pts_28700918, "data_28700918.shp", delete_layer = T)
+#' #DT_safran <- fread(f_safran, header = TRUE)
+#' #pts_28700918 <- DT2sf("28700918", DT_safran)
+#' #st_write(pts_28700918, "data_28700918.shp", delete_layer = T)
 #'
 DT2csv <- function(DT, extr_date) {
   DTi <- DT[DATE==extr_date]

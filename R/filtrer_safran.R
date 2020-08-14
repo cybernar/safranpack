@@ -9,10 +9,11 @@
 #' @param date_f Single character with end date (format : "YYYYMMDD")
 #'
 #' @return data.table object with Safran data
+#' @import data.table
 #' @export
 #'
 #' @examples
-#' DT_XY <- safran_filtre(DT, "640", "2200", "20180301", "20180331")
+#' #DT_XY <- safran_filtre(DT, "640", "2200", "20180301", "20180331")
 #'
 safran_filtre <- function(DT, lamb_x, lamb_y, date_d, date_f) {
   seq_dates <- strftime(seq(date_d, date_f, by="days"), "%Y%m%d")

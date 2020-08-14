@@ -26,8 +26,8 @@ et genere 1 stack raster
 }
 \examples{
 f_safran <- system.file("extdata", "dumdata_287009.csv.gz", package = "safranpack")
-DT_safran <- fread(f_safran, header = TRUE)
-raster_rr_287009 <- safran2rast(DT_safran, "PRELIQ_Q", "28700901", "28700930")
-writeRaster(raster_rr_287009, "rr_france_287009.tif")
+#DT_safran <- fread(f_safran, header = TRUE)
+#raster_rr_287009 <- safran2rast(DT_safran, "PRELIQ_Q", "28700901", "28700930")
+#writeRaster(raster_rr_287009, "rr_france_287009.tif")
 
 }

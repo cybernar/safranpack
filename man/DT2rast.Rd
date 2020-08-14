@@ -22,8 +22,8 @@ et génère 1 raster (toute l'étendue c'est à dire la Métropole)
 }
 \examples{
 f_safran <- system.file("extdata", "dumdata_287009.csv.gz", package = "safranpack")
-DT_safran <- fread(f_safran, header = TRUE)
-raster_rr <- DT2rast(DT_safran, "PRELIQ_Q", "28700918")
-writeRaster(raster_rr, "rr_france_28700918.tif")
+#DT_safran <- fread(f_safran, header = TRUE)
+#raster_rr <- DT2rast(DT_safran, "PRELIQ_Q", "28700918")
+#writeRaster(raster_rr, "rr_france_28700918.tif")
 
 }

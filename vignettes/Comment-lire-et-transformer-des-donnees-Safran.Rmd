@@ -90,6 +90,8 @@ Extrait de fichier : <https://publitheque.meteo.fr/serveur/grilles/Demo_SIM2_201
 #URL <- "https://publitheque.meteo.fr/serveur/grilles/Demo_SIM2_2018_20180331.csv"
 #download.file(URL,"Demo_SIM2_2018_20180331.csv")
 
+f_safran <- system.file("extdata", "dumdata_287009.csv.gz", package = "safranpack")
+
 ```
 
 ## Exemples d'utilisation 

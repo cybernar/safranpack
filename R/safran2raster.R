@@ -10,13 +10,14 @@
 #' @param extr_date Single character with date (format : "YYYYMMDD")
 #'
 #' @return Raster layer
+#' @import data.table raster
 #' @export
 #'
 #' @examples
 #' f_safran <- system.file("extdata", "dumdata_287009.csv.gz", package = "safranpack")
-#' DT_safran <- fread(f_safran, header = TRUE)
-#' raster_rr <- DT2rast(DT_safran, "PRELIQ_Q", "28700918")
-#' writeRaster(raster_rr, "rr_france_28700918.tif")
+#' #DT_safran <- fread(f_safran, header = TRUE)
+#' #raster_rr <- DT2rast(DT_safran, "PRELIQ_Q", "28700918")
+#' #writeRaster(raster_rr, "rr_france_28700918.tif")
 #'
 DT2rast <- function(DT, varname, extr_date) {
   varlist <- c("LAMBX", "LAMBY", varname)
@@ -43,9 +44,9 @@ DT2rast <- function(DT, varname, extr_date) {
 #'
 #' @examples
 #' f_safran <- system.file("extdata", "dumdata_287009.csv.gz", package = "safranpack")
-#' DT_safran <- fread(f_safran, header = TRUE)
-#' raster_rr_287009 <- safran2rast(DT_safran, "PRELIQ_Q", "28700901", "28700930")
-#' writeRaster(raster_rr_287009, "rr_france_287009.tif")
+#' #DT_safran <- fread(f_safran, header = TRUE)
+#' #raster_rr_287009 <- safran2rast(DT_safran, "PRELIQ_Q", "28700901", "28700930")
+#' #writeRaster(raster_rr_287009, "rr_france_287009.tif")
 #'
 safran2rast <- function(DT, varname, d_date, f_date, etendue_l2e=NULL) {
   varlist <- c("LAMBX", "LAMBY", "DATE", varname)

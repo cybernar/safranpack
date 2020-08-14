@@ -24,6 +24,6 @@ data.table object with Safran data
 Filtrer données Safran par lieu (XY) et plage temporelle
 }
 \examples{
-DT_XY <- safran_filtre(DT, "640", "2200", "20180301", "20180331")
+#DT_XY <- safran_filtre(DT, "640", "2200", "20180301", "20180331")
 
 }

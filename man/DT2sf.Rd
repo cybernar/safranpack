@@ -20,8 +20,8 @@ et génère 1 objet sf (toute l'étendue des données en entrée c'est à dire l
 }
 \examples{
 f_safran <- system.file("extdata", "dumdata_287009.csv.gz", package = "safranpack")
-DT_safran <- fread(f_safran, header = TRUE)
-pts_28700918 <- DT2sf("28700918", DT_safran)
-st_write(pts_28700918, "data_28700918.shp", delete_layer = T)
+#DT_safran <- fread(f_safran, header = TRUE)
+#pts_28700918 <- DT2sf("28700918", DT_safran)
+#st_write(pts_28700918, "data_28700918.shp", delete_layer = T)
 
 }
